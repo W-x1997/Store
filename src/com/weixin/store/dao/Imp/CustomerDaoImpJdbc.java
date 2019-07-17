@@ -19,7 +19,7 @@ public class CustomerDaoImpJdbc implements CustomerDao {
 
     @Override
     public Customer findByPK(String pk) throws ClassNotFoundException {
-        String sql="select * from customer where id=?";
+        String sql="select * from customers where id=?";
         List<Customer> list=new ArrayList<Customer>();
 
         template.query(new PreparedStatementCreator() {
@@ -56,7 +56,7 @@ public class CustomerDaoImpJdbc implements CustomerDao {
 
     @Override
     public List<Customer> findAll() throws ClassNotFoundException {
-        String sql="select * from customer ";
+        String sql="select * from customers ";
         List<Customer> list=new ArrayList<Customer>();
 
         template.query(new PreparedStatementCreator() {
@@ -91,7 +91,7 @@ public class CustomerDaoImpJdbc implements CustomerDao {
     @Override
     public void create(Customer customer) {
 
-        String sql="insert into Customers (id,name,password,address,phone,birthday) values(?,?,?,?,?,?)";
+        String sql="insert into customers (id,name,password,address,phone,birthday) values(?,?,?,?,?,?)";
 
         template.update(new PreparedStatementCreator() {
             @Override
@@ -114,7 +114,7 @@ public class CustomerDaoImpJdbc implements CustomerDao {
     public void modify(Customer customer) {
 
 
-        String sql="update Customers set name=?,password=?,address=?,phone=?,birthday=? where id=?";
+        String sql="update customers set name=?,password=?,address=?,phone=?,birthday=? where id=?";
 
         template.update(new PreparedStatementCreator() {
             @Override
