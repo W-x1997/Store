@@ -19,13 +19,17 @@ public class Main {
         jdbcTemplate.query(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-
-                return null;
+                String sql = "select * from customers";
+                PreparedStatement statement;
+                statement = connection.prepareStatement(sql);
+                return statement;
 
             }
         }, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
+                String name=resultSet.getString("name");
+                System.out.println(name);
 
             }
         });
