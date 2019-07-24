@@ -100,6 +100,51 @@ public class GoodsDaoImp implements GoodsDao {
     }
 
     @Override
+    public List<Goods> findStartEnd(int start, int end) throws ClassNotFoundException {
+        List<Goods> list=new ArrayList<Goods>();
+        StringBuffer sql=new StringBuffer("select * from goods");
+        sql.append(" LIMIT ").append(end-start);
+        sql.append(" OFFSET ").append(start);
+
+
+        template.query(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement statement=connection.prepareStatement(sql.toString());
+
+                return statement;
+            }
+        }, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet resultSet) throws SQLException {
+                Goods goods=new Goods();
+                goods.setId(resultSet.getInt("id"));
+                goods.setBrand(resultSet.getString("brand"));
+                goods.setCard_model(resultSet.getString("card_model"));
+                goods.setCpu_brand(resultSet.getString("cpu_brand"));
+                goods.setCpu_type(resultSet.getString("cpu_type"));
+                goods.setDescprition(resultSet.getString("description"));
+                goods.setDisplaysize(resultSet.getString("displaysize"));
+                goods.setImage(resultSet.getString("image"));
+                goods.setMemory_capacity(resultSet.getString("memory_capacity"));
+                goods.setName(resultSet.getString("name"));
+                goods.setHd_capacity(resultSet.getString("hd_capacity"));
+                goods.setPrice(resultSet.getDouble("price"));
+
+                list.add(goods);
+
+            }
+
+        });
+
+        if(list.size()>0)
+            return list;
+        else
+            return null;
+
+    }
+
+    @Override
     public void create(Goods goods) {
 
         String sql="INSERT INTO goods (id, name, price, description, brand, cpu_brand, cpu_type, memory_capacity, hd_capacity, card_model, displaysize, image) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
