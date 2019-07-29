@@ -22,11 +22,11 @@ public class OrderLineItem {
         this.quantity = quantity;
     }
 
-    public double getSubtotal() {
+    public double  getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
+    public void setSubtotal(double  subtotal) {
         this.subtotal = subtotal;
     }
 

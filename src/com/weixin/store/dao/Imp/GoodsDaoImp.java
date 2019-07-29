@@ -36,7 +36,7 @@ public class GoodsDaoImp implements GoodsDao {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
                   Goods goods=new Goods();
-                  goods.setId(resultSet.getInt("id"));
+                  goods.setId(resultSet.getLong("id"));
                   goods.setBrand(resultSet.getString("brand"));
                   goods.setCard_model(resultSet.getString("card_model"));
                   goods.setCpu_brand(resultSet.getString("cpu_brand"));
@@ -78,7 +78,7 @@ public class GoodsDaoImp implements GoodsDao {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
                 Goods goods=new Goods();
-                goods.setId(resultSet.getInt("id"));
+                goods.setId(resultSet.getLong("id"));
                 goods.setBrand(resultSet.getString("brand"));
                 goods.setCard_model(resultSet.getString("card_model"));
                 goods.setCpu_brand(resultSet.getString("cpu_brand"));
@@ -118,7 +118,7 @@ public class GoodsDaoImp implements GoodsDao {
             @Override
             public void processRow(ResultSet resultSet) throws SQLException {
                 Goods goods=new Goods();
-                goods.setId(resultSet.getInt("id"));
+                goods.setId(resultSet.getLong("id"));
                 goods.setBrand(resultSet.getString("brand"));
                 goods.setCard_model(resultSet.getString("card_model"));
                 goods.setCpu_brand(resultSet.getString("cpu_brand"));

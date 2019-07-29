@@ -5,6 +5,9 @@ import java.util.Date;
 public class Orders {
 
     private String id;
+    private Date orderDate;
+    private int status;
+    private double total;
 
     public String getId() {
         return id;
@@ -38,8 +41,6 @@ public class Orders {
         this.total = total;
     }
 
-    private Date orderDate;
-    private int status;
-    private double total;
+
 
 }

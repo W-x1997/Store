@@ -6,9 +6,9 @@ import com.weixin.store.domain.Orders;
 import java.util.List;
 
 public interface OrderDao {
-    Orders findByPK(String pk);
+    Orders findByPK(String pk) throws ClassNotFoundException;
 
-    List<Orders> findAll();
+    List<Orders> findAll() throws ClassNotFoundException;
 
     void create(Orders orders);
     void modify(Orders orders);
