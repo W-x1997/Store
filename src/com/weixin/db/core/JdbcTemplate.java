@@ -15,7 +15,7 @@ public class JdbcTemplate {
      * @throws ClassNotFoundException
      */
 
-    public void query(PreparedStatementCreator pscreator,RowCallbackHandler callbackHandler) throws DataAccessException,ClassNotFoundException{
+    public void query(PreparedStatementCreator pscreator,RowCallbackHandler callbackHandler) throws DataAccessException{
         Connection conn=null;
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;

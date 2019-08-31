@@ -84,7 +84,7 @@ public class OrderDaoImp implements OrderDao {
 
     @Override
     public void create(Orders orders) {
-        String sql="INSERT INTO orders (id, order_date, status, total) VALUES (?, ?, ?, ?);";
+        String sql="INSERT INTO orders(id,order_date,status,total) VALUES (?, ?, ?, ?)";
 
         template.update(new PreparedStatementCreator() {
             @Override

@@ -48,11 +48,11 @@ class OrderDaoImpTest {
         Orders orders=new Orders();
         orders.setTotal(1000);
         orders.setStatus(1);
-        orders.setId("2");
-        orders.setOrderDate(new Date(1000000L));
+        orders.setId("weixin");
+        orders.setOrderDate(new Date());
         dao.create(orders);
 
-        Orders orders1=dao.findByPK("2");
+        Orders orders1=dao.findByPK("weixin");
         assertNotNull(orders1);
         assertEquals(orders.getTotal(),orders1.getTotal());
         assertEquals(orders.getStatus(),orders1.getStatus());
