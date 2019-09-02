@@ -17,7 +17,7 @@ public class CharachterEncodingFilter implements Filter {
        if(encoding!=null){
            req.setCharacterEncoding(encoding);
        }
-       
+
 
         chain.doFilter(req, resp);
     }
