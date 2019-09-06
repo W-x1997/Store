@@ -1,4 +1,7 @@
+
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html>
 <head>
@@ -37,6 +40,39 @@
             line-height: 50px;
         }
     </style>
+
+  <script>
+      function verify(myform) {
+          var erroMsg="";
+          if(myform.userid.value==""){
+              erroMsg+="客户账号不能为空！\n";
+          }
+          if(myform.name.value==""){
+              erroMsg+="客户姓名不能为空！\n";
+          }
+          if(myform.password.value!=myform.password2.value){
+              erroMsg+="两次密码输入不一致！\n";
+          }
+
+          var pattern = /^((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))$/;
+
+          if(!pattern.test(myform.birthday.value)){
+              erroMsg+="日期格式不正确！\n";
+          }
+
+          if(erroMsg==""){
+              return true;
+          }else{
+              alert(erroMsg);
+              return false;
+
+          }
+
+
+
+      }
+
+  </script>
 </head>
 
 <body>
@@ -46,8 +82,19 @@
 <div class="text3" align="center">请填写下列信息</div>
 <br>
 
+<%--
+ Eorror msg
+ --%>
 
-<form action="controller" method="post">
+<ul>
+   <c:forEach var="error" items="${errors}">
+     <li class="error">${error} </li>
+   </c:forEach>
+
+</ul>
+
+
+<form action="controller" method="post" onsubmit="return verify(this)">
 <table width="60%" border="0" align="center" class="boder">
   <tr>
     <td width="35%" height="27" class="col1">客户账号：</td>

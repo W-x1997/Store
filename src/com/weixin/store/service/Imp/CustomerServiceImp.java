@@ -14,6 +14,8 @@ public class CustomerServiceImp implements CustomerService {
     public boolean login(Customer customer) throws ClassNotFoundException {
 
         Customer dbcustomer=customerDao.findByPK(customer.getId());
+        if(dbcustomer==null)
+            return false;
         if(dbcustomer.getPassword().equals(customer.getPassword())){
 
             //登录成功
