@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html>
 <head>
@@ -42,21 +44,30 @@
 <div class="text3" align="center">请从商品列表中选择您喜爱的商品</div>
 <br>
 <table width="100%" border="0" align="center">
+
   <tr bgcolor="#b4c8ed">
     <th>商品名称</th>
     <th width="5%" >商品价格</th>
     <th width="15%" >添加到购物车</th>
   </tr>
-  <tr bgcolor='#ffffff'>
-    <td class="col1"><a href="Product.html?productId=#">酷耶（Cooyes） i5四核/GTX1050ti独显4G/台式机电脑主机整机全套组装家用办公游戏 GTX750独显主机+23英寸显示器</a></td>
-    <td class="col2">￥3399.00</td>
-    <td class="col3"><a href="AddCart.html?productId=#">添加到购物车</a></td>
-  </tr> 
-   <tr bgcolor='#edf8ff'>
-    <td class="col1"><a href="Product.html?productId=#">酷耶（Cooyes） i5四核/GTX1050ti独显4G/台式机电脑主机整机全套组装家用办公游戏 GTX750独显主机+23英寸显示器</a></td>
-    <td class="col2">￥3399.00</td>
-    <td class="col3"><a href="AddCart.html?productId=#">添加到购物车</a></td>
+  <c:forEach items="${goodslist}" var="goods" varStatus="status">
+  <tr
+          <c:if test="${status.index%2==0}" >
+          bgcolor='#ffffff'
+          </c:if>
+
+          <c:if test="${status.index%2!=0}" >
+          bgcolor='#edf8ff'
+          </c:if>
+    >
+    <td class="col1"><a href="controller?id=${goods.id}">${goods.descprition}</a></td>
+    <td class="col2">RMB：${goods.price}</td>
+    <td class="col3"><a href="AddCart.html?id=${goods.id}">添加到购物车</a></td>
   </tr>
+
+  </c:forEach>
+
+
 </table>
 <div class="footer">
   <hr  width="100%" />

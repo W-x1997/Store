@@ -1,7 +1,10 @@
 package com.weixin.store.web;
 
 import com.weixin.store.dao.CustomerDao;
+import com.weixin.store.dao.GoodsDao;
+import com.weixin.store.dao.Imp.GoodsDaoImp;
 import com.weixin.store.domain.Customer;
+import com.weixin.store.domain.Goods;
 import com.weixin.store.service.CustomerService;
 import com.weixin.store.service.Imp.CustomerServiceImp;
 import com.weixin.store.service.ServiceException;
@@ -21,6 +24,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
 
     DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
     CustomerService customerDao=new CustomerServiceImp();
+    GoodsDao goodsDao=new GoodsDaoImp();
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         doGet(request,response);
@@ -120,6 +124,22 @@ public class Controller extends javax.servlet.http.HttpServlet {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+
+
+        }else if("list".equals(action)){
+            //商品列表
+            try {
+                List<Goods> goods=goodsDao.findAll();
+
+                request.setAttribute("goodslist",goods);
+                request.getRequestDispatcher("goods_list.jsp").forward(request,response);
+
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
 
 
         }
