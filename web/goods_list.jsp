@@ -69,8 +69,26 @@
 
 
 </table>
-<div class="footer">
-  <hr  width="100%" />
-  Copyright © 智捷课堂 2008-2018. All Rights Reserved </div>
+
+<hr/>
+
+<div align="center">
+  <ul class="pagination">
+
+    <li><a href="controller?action=paging&page=prev">«</a></li>
+
+    <c:forEach var="page" begin="1" end="${totalPageNumber}">
+        <li><a
+                <c:if test="${page==currentPage}">
+                  class="active"
+                </c:if>
+                href="controller?action=paging&page=${page}">${page}</a></li>
+    </c:forEach>
+
+    <li><a href="controller?action=paging&page=next">»</a></li>
+  </ul>
+
+  <%@include file="footer.jsp"%>
+
 </body>
 </html>

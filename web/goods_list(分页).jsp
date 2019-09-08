@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html>
 <head>
@@ -72,8 +74,8 @@
   <li><a href="#">»</a></li>
 </ul>
 </div>
-<div class="footer">
-  <hr  width="100%" />
-  Copyright © 智捷课堂 2008-2018. All Rights Reserved </div>
+
+<%@include file="footer.jsp"%>
+
 </body>
 </html>
