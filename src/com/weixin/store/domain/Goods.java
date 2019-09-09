@@ -11,6 +11,8 @@ public class Goods {
     private String memory_capacity;
     private String hd_capacity;
     private String card_model;
+    private String displaysize;
+    private String image;
 
     public long getId() {
         return id;
@@ -108,7 +110,5 @@ public class Goods {
         this.image = image;
     }
 
-    private String displaysize;
-    private String image;
 
 }

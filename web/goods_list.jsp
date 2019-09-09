@@ -34,12 +34,11 @@
 	}
 </style>
 <body>
-<table width="100%" border="0" align="center">
-  <tr>
-    <td width="616"><img src="images/list.jpg" align="absmiddle" /></td>
-    <td width="734" align="right"><img src="images/mycar1.jpg" align="absmiddle" /> <a href="Cart.html">&nbsp;购物车</a> | <a href="zhanghu.html">我的帐户</a> | <a href="Catalog.html">商品列表</a></td>
-  </tr>
-</table>
+<jsp:include page="goods_header.jsp">
+
+  <jsp:param name="image" value="list.jsp" />
+
+</jsp:include>
 <hr width="100%" />
 <div class="text3" align="center">请从商品列表中选择您喜爱的商品</div>
 <br>
@@ -60,7 +59,7 @@
           bgcolor='#edf8ff'
           </c:if>
     >
-    <td class="col1"><a href="controller?id=${goods.id}">${goods.descprition}</a></td>
+    <td class="col1"><a href="controller?action=detail&id=${goods.id}">${goods.descprition}</a></td>
     <td class="col2">RMB：${goods.price}</td>
     <td class="col3"><a href="AddCart.html?id=${goods.id}">添加到购物车</a></td>
   </tr>

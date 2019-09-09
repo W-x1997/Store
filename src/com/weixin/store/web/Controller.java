@@ -150,7 +150,13 @@ public class Controller extends javax.servlet.http.HttpServlet {
                 request.setAttribute("totalPageNumber",totalPageNumber);
                 request.setAttribute("currentPage",currentPage);
 
-                request.setAttribute("goodslist",goods.subList(0,currentPage*pageSize));
+                int start=(currentPage-1)*pageSize;
+                int end=currentPage*pageSize;
+                if(currentPage==totalPageNumber){
+                    end=goods.size();  //最后一页 特殊
+                }
+
+                request.setAttribute("goodslist",goods.subList(start,end));
              //   request.setAttribute("goodslist ",goods);
                 request.getRequestDispatcher("goods_list.jsp").forward(request,response);
 
@@ -200,6 +206,22 @@ public class Controller extends javax.servlet.http.HttpServlet {
             request.setAttribute("goodslist",goods);
             //   request.setAttribute("goodslist ",goods);
             request.getRequestDispatcher("goods_list.jsp").forward(request,response);
+
+        }else if("detail".equals(action)){
+            //商品详情
+            String goodid=request.getParameter("id");
+
+            Goods goods= null;
+            try {
+                goods = goodsDao.findByPK(new Long(goodid));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            request.setAttribute("goods",goods);
+            request.getRequestDispatcher("goods_detail.jsp").forward(request,response);
+
+
 
         }
 
