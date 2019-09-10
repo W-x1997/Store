@@ -58,7 +58,7 @@
       </table>
       <br>
       <br>
-      <div><a href="Catalog.html"><img src="images/button.jpg" </div></td>
+      <div><a href="controller?action=add&pagename=detail&id=${goods.id}&name=${goods.name}&price=${goods.price}"><img src="images/button.jpg" ></div></td>
   </tr>
 </table>
 

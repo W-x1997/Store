@@ -61,7 +61,7 @@
     >
     <td class="col1"><a href="controller?action=detail&id=${goods.id}">${goods.descprition}</a></td>
     <td class="col2">RMB：${goods.price}</td>
-    <td class="col3"><a href="AddCart.html?id=${goods.id}">添加到购物车</a></td>
+    <td class="col3"><a href="controller?action=add&pagename=list&id=${goods.id}&name=${goods.name}&price=${goods.price}">添加到购物车</a></td>
   </tr>
 
   </c:forEach>

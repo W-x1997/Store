@@ -1,5 +1,6 @@
 package com.weixin.store.web;
 
+import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import com.weixin.store.dao.CustomerDao;
 import com.weixin.store.dao.GoodsDao;
 import com.weixin.store.dao.Imp.GoodsDaoImp;
@@ -16,9 +17,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 
 //@javax.servlet.annotation.WebServlet(name = "Controller",urlPatterns = {"/controller"})
@@ -220,6 +219,90 @@ public class Controller extends javax.servlet.http.HttpServlet {
 
             request.setAttribute("goods",goods);
             request.getRequestDispatcher("goods_detail.jsp").forward(request,response);
+
+
+
+        }else if("add".equals(action)){
+            String goodid=request.getParameter("id");
+            String name=request.getParameter("name");
+            Float price=new Float(request.getParameter("price"));
+
+            //购物车添加  购物车结构是List中包含Map，每一个Map是一个商品
+            //丛Session中取数据
+            List<Map<String,Object>> cart=(List<Map<String,Object>>) request.getSession().getAttribute("cart");
+
+            if(cart==null){
+                cart=new ArrayList<Map<String,Object>>();
+                request.getSession().setAttribute("cart",cart);
+            }
+
+
+            int flag=0;
+
+            //购物车中有选择商品
+            for(Map<String,Object> item:cart){
+                String goodsid2=(String)item.get("goodsid");
+                if(goodid.equals(goodsid2)){
+                    Integer quantity=(Integer)item.get("quantity");
+                    quantity++;
+                    item.put("quantity",quantity);
+                    flag++;
+                }
+
+            }
+
+
+
+            //购车车中没有选择的商品
+           if(flag==0){
+               Map<String,Object> item=new HashMap<>();
+               //item结构 Map [商品id，商品名称，商品数量]
+               item.put("goodsid",goodid);
+               item.put("goodsname",name);
+               item.put("quantity",1);
+               item.put("price",price);
+               cart.add(item);
+           }
+
+            String pagename=request.getParameter("pagename");
+
+            if(pagename.equals("list")){
+
+                int start=(currentPage-1)*pageSize;
+                int end=currentPage*pageSize;
+                List<Goods> goods= null;
+                try {
+                    goods = goodsDao.findStartEnd(start,end);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                request.setAttribute("totalPageNumber",totalPageNumber);
+                request.setAttribute("currentPage",currentPage);
+
+                request.setAttribute("goodslist",goods);
+                //   request.setAttribute("goodslist ",goods);
+                request.getRequestDispatcher("goods_list.jsp").forward(request,response);
+
+
+
+            }else if(pagename.equals("detail")){
+
+
+
+                Goods goods= null;
+                try {
+                    goods = goodsDao.findByPK(new Long(goodid));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                request.setAttribute("goods",goods);
+                request.getRequestDispatcher("goods_detail.jsp").forward(request,response);
+
+
+            }
+
 
 
 
