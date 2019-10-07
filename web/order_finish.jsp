@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html>
 <head>
@@ -27,19 +29,17 @@ a:hover {
 </head>
 
 <body>
-<div class="header">智捷网上电脑商城</div>
+<div class="header">网上电脑商城</div>
 <hr width="100%" />
 <div align="center" >
   <p class="text7"> 谢谢您的购物！ </p>
-  <p class="text7"> 您的订单号是： </p>
+  <p class="text7"> 您的订单号是：${ordersid} </p>
   <p class="text7"> 您可以继续购物！ </p>
    <p class="text7">
-       <a href="Catalog.html">返回主页面</a>
+       <a href="controller?action=main">返回主页面</a>
   </p>
 </div>
 
-<div class="footer">
-  <hr  width="100%" />
-  Copyright © 智捷课堂 2008-2018. All Rights Reserved </div>
+<%@include file="footer.jsp"%>
 </body>
 </html>

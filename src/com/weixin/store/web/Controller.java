@@ -4,10 +4,14 @@ import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import com.weixin.store.dao.CustomerDao;
 import com.weixin.store.dao.GoodsDao;
 import com.weixin.store.dao.Imp.GoodsDaoImp;
+import com.weixin.store.dao.Imp.OrderDaoImp;
+import com.weixin.store.dao.OrderDao;
 import com.weixin.store.domain.Customer;
 import com.weixin.store.domain.Goods;
 import com.weixin.store.service.CustomerService;
 import com.weixin.store.service.Imp.CustomerServiceImp;
+import com.weixin.store.service.Imp.OrderServiceImp;
+import com.weixin.store.service.OrderService;
 import com.weixin.store.service.ServiceException;
 
 import javax.servlet.ServletConfig;
@@ -26,6 +30,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
     DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
     CustomerService customerDao=new CustomerServiceImp();
     GoodsDao goodsDao=new GoodsDaoImp();
+   OrderService orderService=new OrderServiceImp();
 
     private  int totalPageNumber=0; //总页数
     private  int pageSize=0; //每页行数
@@ -304,6 +309,63 @@ public class Controller extends javax.servlet.http.HttpServlet {
             }
 
 
+            }else if("cart".equals(action)){
+
+            //查看购物车
+
+            //丛Session中取数据
+            List<Map<String,Object>> cart=(List<Map<String,Object>>) request.getSession().getAttribute("cart");
+            double total=0.0;
+            if(cart!=null){
+                for (Map<String,Object> item:cart){
+                    String goodsid2=(String)item.get("goodsid");
+                    Integer quantity=(Integer)item.get("quantity");
+                    Float price=(Float)item.get("price");
+                    double subtotal=price*quantity;
+                    total+=subtotal;
+
+                }
+
+            }
+
+
+            request.setAttribute("total",total);
+            request.getRequestDispatcher("cart.jsp").forward(request,response);
+
+        }else if("sub_ord".equals(action)){
+            List<Map<String,Object>> cart=(List<Map<String,Object>>) request.getSession().getAttribute("cart");
+            for (Map<String,Object> item:cart){
+                String goodsid=(String)item.get("goodsid");
+                String strquantity=request.getParameter("quantity_"+goodsid);
+
+                int quantity=0;
+                try{
+                    quantity=new  Integer(strquantity);
+                }catch(Exception e){
+
+                }
+
+                item.put("quantity",quantity);
+            }
+
+        //提交订单
+            try {
+                String ordersid=orderService.submitOrders(cart);
+                request.setAttribute("ordersid",ordersid);
+                request.getRequestDispatcher("order_finish.jsp").forward(request,response);
+
+                request.getSession().removeAttribute("cart");
+
+
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }else if ("main".equals(action)){
+            request.getRequestDispatcher("main.jsp").forward(request,response);
 
 
         }
@@ -311,3 +373,4 @@ public class Controller extends javax.servlet.http.HttpServlet {
 
     }
 }
+

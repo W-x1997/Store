@@ -30,7 +30,7 @@ a:hover {
 
 <body>
 
-<div class="header">智捷网上电脑商城</div>
+<div class="header">网上电脑商城</div>
 <hr width="100%" />
 
 
@@ -41,11 +41,9 @@ a:hover {
 </div>
 <hr width="100%" />
 <div>
-  <p class="text1"> <img src="images/mycar1.jpg" align="absmiddle"  /> <a href="Cart.html">购物车</a> </p>
+  <p class="text1"> <img src="images/mycar1.jpg" align="absmiddle"  /> <a href="controller?action=cart">购物车</a> </p>
   <p class="text2"> 您可以把感兴趣的商品暂时放在购物车中 </p>
 </div>
-<div class="footer">
-  <hr  width="100%" />
-  Copyright © 智捷课堂 2008-2018. All Rights Reserved </div>
+<%@include file="footer.jsp"%>
 </body>
 </html>
