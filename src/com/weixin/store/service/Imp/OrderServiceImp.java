@@ -42,7 +42,7 @@ public class OrderServiceImp implements OrderService {
 
         for(Map item:cart){
             //item 结构 【商品id，数量】
-            long goodsid=(long) item.get("goodsid");
+            Long goodsid=(Long) item.get("goodsid");
             Integer quantity=(Integer)item.get("quantity");
             Goods goods=goodsDao.findByPK(goodsid);
 

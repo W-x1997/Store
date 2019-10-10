@@ -112,7 +112,7 @@
     <c:if test="${not empty cart}">
 
 
-  <<input type="image"  src="images/submit_order.jpg" border="0"/></a>&nbsp;&nbsp;
+  <input type="image"  src="images/submit_order.jpg" border="0"/>&nbsp;&nbsp;
     </c:if>
 </div>
 

@@ -228,7 +228,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
 
 
         }else if("add".equals(action)){
-            String goodid=request.getParameter("id");
+            Long goodsid=new Long(request.getParameter("id"));
             String name=request.getParameter("name");
             Float price=new Float(request.getParameter("price"));
 
@@ -246,8 +246,8 @@ public class Controller extends javax.servlet.http.HttpServlet {
 
             //购物车中有选择商品
             for(Map<String,Object> item:cart){
-                String goodsid2=(String)item.get("goodsid");
-                if(goodid.equals(goodsid2)){
+                Long goodsid2=(Long)item.get("goodsid");
+                if(goodsid.equals(goodsid2)){
                     Integer quantity=(Integer)item.get("quantity");
                     quantity++;
                     item.put("quantity",quantity);
@@ -262,7 +262,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
            if(flag==0){
                Map<String,Object> item=new HashMap<>();
                //item结构 Map [商品id，商品名称，商品数量]
-               item.put("goodsid",goodid);
+               item.put("goodsid",goodsid);
                item.put("goodsname",name);
                item.put("quantity",1);
                item.put("price",price);
@@ -297,7 +297,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
 
                 Goods goods= null;
                 try {
-                    goods = goodsDao.findByPK(new Long(goodid));
+                    goods = goodsDao.findByPK(new Long(goodsid));
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -318,7 +318,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
             double total=0.0;
             if(cart!=null){
                 for (Map<String,Object> item:cart){
-                    String goodsid2=(String)item.get("goodsid");
+                    Long goodsid2=(Long)item.get("goodsid");
                     Integer quantity=(Integer)item.get("quantity");
                     Float price=(Float)item.get("price");
                     double subtotal=price*quantity;
@@ -335,7 +335,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
         }else if("sub_ord".equals(action)){
             List<Map<String,Object>> cart=(List<Map<String,Object>>) request.getSession().getAttribute("cart");
             for (Map<String,Object> item:cart){
-                String goodsid=(String)item.get("goodsid");
+                Long goodsid=(Long)item.get("goodsid");
                 String strquantity=request.getParameter("quantity_"+goodsid);
 
                 int quantity=0;
