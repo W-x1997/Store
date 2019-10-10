@@ -13,7 +13,7 @@
             <a href="controller?action=cart">&nbsp;购物车</a>
 
             | <a href="controller?action=list">商品列表</a>
-            | <a href="zhanghu.html">账户注销</a>
+            | <a href="controller?action=logout">账户注销</a>
         </td>
     </tr>
 </table>

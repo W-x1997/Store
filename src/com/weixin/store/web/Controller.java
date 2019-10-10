@@ -368,6 +368,12 @@ public class Controller extends javax.servlet.http.HttpServlet {
             request.getRequestDispatcher("main.jsp").forward(request,response);
 
 
+        }else if("logout".equals(action)){
+            request.getSession().removeAttribute("cart");
+            request.getSession().removeAttribute("customer");
+
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+
         }
 
 

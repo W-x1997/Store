@@ -1,4 +1,7 @@
 
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html>
 <head>
@@ -28,7 +31,7 @@ a:hover {
 </head>
 
 <body>
-<div class="header">智捷网上电脑商城</div>
+<div class="header">WIX网上电脑商城</div>
 <hr width="100%" />
 <div align="center">
   <p class="text7">恭喜您注册成功！</p>
@@ -36,8 +39,7 @@ a:hover {
        <a href="Catalog.html">返回登录页面 </a>
   </p>
 </div>
-<div class="footer">
-  <hr  width="100%" />
-  Copyright © 智捷课堂 2008-2018. All Rights Reserved </div>
+<%@include file="footer.jsp"%>
+
 </body>
 </html>
