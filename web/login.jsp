@@ -43,10 +43,11 @@
     <tr height="40" >
       <td align="right">&nbsp;</td>
       <td ><input type="image" src="images/login_button.jpg" onclick="document.forms[0].fn.value='login'" />
-        &nbsp;&nbsp;&nbsp;&nbsp; <a href="customer_reg.jsp"><img src="images/reg_button.jpg" border="0" /></a></td>
+        &nbsp;&nbsp;&nbsp;&nbsp; <a href="controller?action=init"><img src="images/reg_button.jpg" border="0" /></a></td>
+
     </tr>
   </table>
-  Copyright ©  2008-2018.
+  Copyright ©  2008-2020.
   <input type="hidden" name="action" value="login">
 </form>
 

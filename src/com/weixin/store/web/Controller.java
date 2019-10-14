@@ -374,6 +374,10 @@ public class Controller extends javax.servlet.http.HttpServlet {
 
             request.getRequestDispatcher("login.jsp").forward(request,response);
 
+        }else if("init".equals(action)){
+
+
+            request.getRequestDispatcher("customer_reg.jsp").forward(request,response);
         }
 
 
